@@ -10,6 +10,10 @@ while True:
 	products.append(p)
 print(products)
 
+for product in products:
+	print(product)
+	print(product[0], '的價格是', p[1])
+
 products[0][0]
 
 
