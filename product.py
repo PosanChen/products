@@ -1,19 +1,29 @@
-#讀取檔案
+import os #載入operating system
+
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-		#如果不想顯示'商品,價格，不要加進去項目
-			continue
-			#遇到'商品,價格'，跳過這一次，直接讀下次，不是結束回圈break
-		name, price = line.strip().split(',')
-		products.append([name, price])
-		#不能把continue放在這裡，不然等於跑完迴圈了才要跳，沒有意義，沒有跳過這一次的意義
-print(products)
-		#因為split分成兩個直接存
-		# 或者 name = s[0]
-		# 或者price = s[1]
-#每個字串，先把換行strip去掉，用逗點','當作切點
+
+if os.path.isfile('products.csv'):
+#請問同一個資料下有沒有這個檔案？檢查檔案
+#":"冒號常常忘記寫！！！！！
+	print('找到檔案')
+	#讀取檔案
+	with open('products.csv', 'r', encoding='utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+			#如果不想顯示'商品,價格，不要加進去項目
+				continue
+				#遇到'商品,價格'，跳過這一次，直接讀下次，不是結束回圈break
+			name, price = line.strip().split(',')
+			products.append([name, price])
+			#不能把continue放在這裡，不然等於跑完迴圈了才要跳，沒有意義，沒有跳過這一次的意義
+	print(products)
+			#因為split分成兩個直接存
+			# 或者 name = s[0]
+			# 或者price = s[1]
+	#每個字串，先把換行strip去掉，用逗點','當作切點
+else:
+	print('找不到檔案')
+
 while True:
 	name = input('請輸入商品名稱')
 	if name == 'q':
